@@ -24,7 +24,7 @@ namespace ASPNETCoreIdentityDemo
                 options.UseSqlServer(connectionString));
 
             //Configuration Identity Services
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options=>
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options=>
             {
                 options.Password.RequiredUniqueChars = 3;
                 options.Password.RequiredLength = 7;
