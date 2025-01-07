@@ -39,15 +39,21 @@ namespace ASPNETCoreIdentityDemo.Controllers
 
                 if(result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, false);
 
-                    return RedirectToAction("Index", "Home");
-                }
+                    if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("ListUsers", "Administration");
+                    }
 
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
+                await _signInManager.SignInAsync(user, false);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+                //foreach (var error in result.Errors)
+                //{
+                //    ModelState.AddModelError("", error.Description);
+                //}
             }
 
             return View(model);
@@ -97,5 +103,12 @@ namespace ASPNETCoreIdentityDemo.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
     }
 }

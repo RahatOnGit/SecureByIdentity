@@ -24,7 +24,7 @@ namespace ASPNETCoreIdentityDemo
                 options.UseSqlServer(connectionString));
 
             //Configuration Identity Services
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options=>
+            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options=>
             {
                 options.Password.RequiredUniqueChars = 3;
                 options.Password.RequiredLength = 7;
@@ -36,6 +36,8 @@ namespace ASPNETCoreIdentityDemo
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Account/Login";
+
+                options.AccessDeniedPath = "/Account/AccessDenied";
             });
 
 

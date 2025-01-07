@@ -1,9 +1,9 @@
-using ASPNETCoreIdentityDemo.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASPNETCoreIdentityDemo.Controllers
 {
+    [Authorize(Roles = "Admin,Moderator")]
     public class HomeController : Controller
     {
         [AllowAnonymous]
@@ -12,7 +12,12 @@ namespace ASPNETCoreIdentityDemo.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
+        public IActionResult SecureMethod()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -23,15 +28,5 @@ namespace ASPNETCoreIdentityDemo.Controllers
         {
             return View();
         }
-
-        [Authorize]
-        public IActionResult SecureMethod()
-        {
-            return View();
-        }
-
-       
-
-       
     }
 }

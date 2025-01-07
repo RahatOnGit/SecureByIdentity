@@ -24,16 +24,33 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Admin Area1</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="SecureMethod">Secure</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="SecureMethod">Admin Area2</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="NonSecureMethod">Non Secure</a>
                         </li>
+
+
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    Manage
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-controller="Administration"
+                                       asp-action="ListUsers">Users</a>
+                                    <a class="dropdown-item" asp-controller="Administration"
+                                       asp-action="ListRoles">Roles</a>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         @*If the user is signed-in display Logout link*@
