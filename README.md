@@ -1,10 +1,7 @@
 # Security By Identity
 
-- At that application, authentication and authorization has been implemented by using ASP.NET Core Identity.
-- Admin can create,update and delete different roles.
-- Admin can assign different registered users to different roles.
-- Admin can remove users from various roles.
-
+- Almost all the features of ASP.NET Core Identity are implemented at the application..
+- Registration, Login, Logout, Role Management etc. have been done
 
 
 Technologies used here are
